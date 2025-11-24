@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'story_ring.dart';
 
 class ProfileStats extends StatelessWidget {
   final int posts;
@@ -42,30 +43,14 @@ class ProfileStats extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Row(
         children: [
-          Container(
-            width: 90,
-            height: 90,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: const LinearGradient(
-                colors: [Colors.purple, Colors.orange, Colors.pink],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            padding: const EdgeInsets.all(3),
-            child: Container(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.black,
-              ),
-              padding: const EdgeInsets.all(3),
-              child: CircleAvatar(
-                radius: 40,
-                backgroundColor: Colors.grey.shade800,
-                backgroundImage: AssetImage(profileImage),
-              ),
-            ),
+          StoryRing(
+            profileImage: profileImage,
+            username: 'google',
+            storyImages: const [
+              'assets/story/story_1.jpg',
+            ],
+            size: 90,
+            hasStory: true,
           ),
           const SizedBox(width: 25),
           Expanded(

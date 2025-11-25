@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_dimensions.dart';
 
 class InstagramBottomNavigation extends StatelessWidget {
   const InstagramBottomNavigation({super.key});
@@ -6,27 +8,49 @@ class InstagramBottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      decoration: BoxDecoration(
-        color: Colors.black,
+      height: AppDimensions.bottomNavHeight,
+      decoration: const BoxDecoration(
+        color: AppColors.background,
         border: Border(
-          top: BorderSide(color: Colors.grey.shade900, width: 0.5),
+          top: BorderSide(
+            color: AppColors.bottomNavBorder,
+            width: AppDimensions.borderThin,
+          ),
         ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const Icon(Icons.home, color: Colors.white, size: 28),
-          const Icon(Icons.search, color: Colors.white, size: 28),
-          const Icon(Icons.add_box_outlined, color: Colors.white, size: 28),
-          const Icon(Icons.video_library_outlined, color: Colors.white, size: 28),
+          const Icon(
+            Icons.home,
+            color: AppColors.iconPrimary,
+            size: AppDimensions.iconLarge,
+          ),
+          const Icon(
+            Icons.search,
+            color: AppColors.iconPrimary,
+            size: AppDimensions.iconLarge,
+          ),
+          const Icon(
+            Icons.add_box_outlined,
+            color: AppColors.iconPrimary,
+            size: AppDimensions.iconLarge,
+          ),
+          const Icon(
+            Icons.video_library_outlined,
+            color: AppColors.iconPrimary,
+            size: AppDimensions.iconLarge,
+          ),
           Container(
-            width: 28,
-            height: 28,
+            width: AppDimensions.avatarMedium,
+            height: AppDimensions.avatarMedium,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.white, width: 2),
-              color: Colors.grey.shade800,
+              border: Border.all(
+                color: AppColors.iconPrimary,
+                width: AppDimensions.borderXThick,
+              ),
+              color: AppColors.buttonPrimary,
             ),
           ),
         ],

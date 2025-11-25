@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import '../../domain/entities/story.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/constants/app_text_styles.dart';
+import '../../../../core/constants/app_durations.dart';
 
 class StoryViewerPage extends StatefulWidget {
   final List<Story> stories;
@@ -29,7 +33,7 @@ class _StoryViewerPageState extends State<StoryViewerPage>
     super.initState();
     _progressController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 5),
+      duration: AppDurations.storyDuration,
     );
 
     _startStory();
@@ -37,7 +41,7 @@ class _StoryViewerPageState extends State<StoryViewerPage>
 
   void _startStory() {
     _progressController.forward(from: 0);
-    _timer = Timer(const Duration(seconds: 5), _nextStory);
+    _timer = Timer(AppDurations.storyDuration, _nextStory);
   }
 
   void _nextStory() {
@@ -84,7 +88,7 @@ class _StoryViewerPageState extends State<StoryViewerPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.background,
       body: GestureDetector(
         onTapDown: (details) {
           final width = MediaQuery.of(context).size.width;
@@ -114,13 +118,13 @@ class _StoryViewerPageState extends State<StoryViewerPage>
               left: 0,
               right: 0,
               child: Container(
-                height: 120,
+                height: AppDimensions.storyHeaderHeight,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.black.withOpacity(0.7),
+                      AppColors.storyOverlay,
                       Colors.transparent,
                     ],
                   ),
@@ -134,16 +138,18 @@ class _StoryViewerPageState extends State<StoryViewerPage>
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 8,
+                      horizontal: AppDimensions.spacingSmall,
+                      vertical: AppDimensions.spacingSmall,
                     ),
                     child: Row(
                       children: List.generate(
                         widget.stories.length,
                         (index) => Expanded(
                           child: Container(
-                            height: 2,
-                            margin: const EdgeInsets.symmetric(horizontal: 2),
+                            height: AppDimensions.storyProgressHeight,
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: AppDimensions.storyProgressSpacing,
+                            ),
                             child: AnimatedBuilder(
                               animation: _progressController,
                               builder: (context, child) {
@@ -154,10 +160,10 @@ class _StoryViewerPageState extends State<StoryViewerPage>
                                           ? 1.0
                                           : 0.0,
                                   backgroundColor:
-                                      Colors.white.withOpacity(0.3),
+                                      AppColors.storyProgressInactive,
                                   valueColor:
                                       const AlwaysStoppedAnimation<Color>(
-                                    Colors.white,
+                                    AppColors.storyProgressActive,
                                   ),
                                 );
                               },
@@ -171,18 +177,18 @@ class _StoryViewerPageState extends State<StoryViewerPage>
                   // Header
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
+                      horizontal: AppDimensions.spacingMedium,
+                      vertical: AppDimensions.spacingSmall,
                     ),
                     child: Row(
                       children: [
                         Container(
-                          width: 35,
-                          height: 35,
+                          width: AppDimensions.profilePictureSmall,
+                          height: AppDimensions.profilePictureSmall,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: Colors.white,
+                              color: AppColors.textPrimary,
                               width: 2,
                             ),
                           ),
@@ -190,31 +196,29 @@ class _StoryViewerPageState extends State<StoryViewerPage>
                             backgroundImage: AssetImage(widget.profileImage),
                           ),
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: AppDimensions.spacingSmall),
                         Text(
                           widget.username,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: AppTextStyles.storyUsername,
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: AppDimensions.spacingSmall),
                         Text(
-                          '${_getTimeAgo()}',
-                          style: TextStyle(
-                            color: Colors.white.withOpacity(0.7),
-                            fontSize: 12,
-                          ),
+                          _getTimeAgo(),
+                          style: AppTextStyles.storyTimestamp,
                         ),
                         const Spacer(),
                         IconButton(
-                          icon: const Icon(Icons.more_vert,
-                              color: Colors.white),
+                          icon: const Icon(
+                            Icons.more_vert,
+                            color: AppColors.textPrimary,
+                          ),
                           onPressed: () {},
                         ),
                         IconButton(
-                          icon: const Icon(Icons.close, color: Colors.white),
+                          icon: const Icon(
+                            Icons.close,
+                            color: AppColors.textPrimary,
+                          ),
                           onPressed: () => Navigator.pop(context),
                         ),
                       ],
@@ -231,39 +235,44 @@ class _StoryViewerPageState extends State<StoryViewerPage>
               right: 0,
               child: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(AppDimensions.spacingLarge),
                   child: Row(
                     children: [
                       Expanded(
                         child: Container(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 12,
+                            horizontal: AppDimensions.spacingLarge,
+                            vertical: AppDimensions.spacingMedium,
                           ),
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Colors.white.withOpacity(0.5),
+                              color: AppColors.storyProgressInactive,
                             ),
-                            borderRadius: BorderRadius.circular(25),
+                            borderRadius: BorderRadius.circular(
+                              AppDimensions.radiusLarge,
+                            ),
                           ),
-                          child: Text(
+                          child: const Text(
                             'Send message',
-                            style: TextStyle(
-                              color: Colors.white.withOpacity(0.8),
-                              fontSize: 14,
-                            ),
+                            style: AppTextStyles.storyAction,
                           ),
                         ),
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: AppDimensions.spacingMedium),
                       IconButton(
-                        icon: const Icon(Icons.favorite_border,
-                            color: Colors.white, size: 28),
+                        icon: const Icon(
+                          Icons.favorite_border,
+                          color: AppColors.textPrimary,
+                          size: AppDimensions.iconLarge,
+                        ),
                         onPressed: () {},
                       ),
                       IconButton(
-                        icon: const Icon(Icons.send, color: Colors.white,
-                            size: 28),
+                        icon: const Icon(
+                          Icons.send,
+                          color: AppColors.textPrimary,
+                          size: AppDimensions.iconLarge,
+                        ),
                         onPressed: () {},
                       ),
                     ],

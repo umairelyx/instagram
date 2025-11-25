@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/story.dart';
 import '../pages/story_viewer_page.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/constants/app_gradients.dart';
 
 /// Reusable story ring widget that can be used anywhere
 /// Shows gradient ring if user has active stories
@@ -16,7 +19,7 @@ class StoryRing extends StatelessWidget {
     required this.profileImage,
     required this.username,
     required this.stories,
-    this.size = 90,
+    this.size = AppDimensions.profilePictureLarge,
     this.hasStory = true,
   });
 
@@ -27,25 +30,19 @@ class StoryRing extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        gradient: hasStory
-            ? const LinearGradient(
-                colors: [Colors.purple, Colors.orange, Colors.pink],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              )
-            : null,
-        color: hasStory ? null : Colors.grey.shade800,
+        gradient: hasStory ? AppGradients.storyRing : null,
+        color: hasStory ? null : AppColors.profileBackground,
       ),
-      padding: const EdgeInsets.all(3),
+      padding: const EdgeInsets.all(AppDimensions.profileRingPadding),
       child: Container(
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.black,
+          color: AppColors.profileRingBackground,
         ),
-        padding: const EdgeInsets.all(3),
+        padding: const EdgeInsets.all(AppDimensions.profileRingPadding),
         child: CircleAvatar(
           radius: (size - 12) / 2,
-          backgroundColor: Colors.grey.shade800,
+          backgroundColor: AppColors.profileBackground,
           backgroundImage: AssetImage(profileImage),
         ),
       ),

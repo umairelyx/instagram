@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../pages/post_detail_page.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_dimensions.dart';
 
 class ProfileTaggedGrid extends StatelessWidget {
   final List<String> tagged;
@@ -17,9 +19,9 @@ class ProfileTaggedGrid extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: tagged.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisSpacing: 2,
-        crossAxisSpacing: 2,
+        crossAxisCount: AppDimensions.gridColumns,
+        mainAxisSpacing: AppDimensions.gridSpacing,
+        crossAxisSpacing: AppDimensions.gridSpacing,
       ),
       itemBuilder: (context, index) {
         return GestureDetector(
@@ -42,25 +44,24 @@ class ProfileTaggedGrid extends StatelessWidget {
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Container(
-                    color: Colors.grey.shade900,
-                    child: Center(
+                    color: AppColors.errorBackground,
+                    child: const Center(
                       child: Icon(
                         Icons.person_pin,
-                        color: Colors.grey.shade700,
-                        size: 40,
+                        color: AppColors.errorIcon,
+                        size: AppDimensions.iconXXLarge,
                       ),
                     ),
                   );
                 },
               ),
-              // Person pin icon overlay
               const Positioned(
-                top: 8,
-                right: 8,
+                top: AppDimensions.spacingSmall2,
+                right: AppDimensions.spacingSmall2,
                 child: Icon(
                   Icons.person_pin,
-                  color: Colors.white,
-                  size: 20,
+                  color: AppColors.iconPrimary,
+                  size: AppDimensions.iconSmall2,
                 ),
               ),
             ],

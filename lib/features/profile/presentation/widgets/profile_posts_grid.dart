@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../pages/post_detail_page.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_dimensions.dart';
 
 class ProfilePostsGrid extends StatelessWidget {
   final List<String> posts;
@@ -17,12 +19,11 @@ class ProfilePostsGrid extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: posts.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisSpacing: 2,
-        crossAxisSpacing: 2,
+        crossAxisCount: AppDimensions.gridColumns,
+        mainAxisSpacing: AppDimensions.gridSpacing,
+        crossAxisSpacing: AppDimensions.gridSpacing,
       ),
       itemBuilder: (context, index) {
-        // Add variety to posts
         final bool isVideo = index % 4 == 0;
         final bool hasMultiple = index % 5 == 0;
         final bool isPinned = index == 0;
@@ -42,55 +43,52 @@ class ProfilePostsGrid extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-            Image.asset(
-              posts[index],
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  color: Colors.grey.shade900,
-                  child: Center(
-                    child: Icon(
-                      Icons.image,
-                      color: Colors.grey.shade700,
-                      size: 40,
+              Image.asset(
+                posts[index],
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: AppColors.errorBackground,
+                    child: const Center(
+                      child: Icon(
+                        Icons.image,
+                        color: AppColors.errorIcon,
+                        size: AppDimensions.iconXXLarge,
+                      ),
                     ),
+                  );
+                },
+              ),
+              if (isVideo)
+                const Positioned(
+                  top: AppDimensions.spacingSmall2,
+                  right: AppDimensions.spacingSmall2,
+                  child: Icon(
+                    Icons.play_arrow,
+                    color: AppColors.iconPrimary,
+                    size: AppDimensions.iconSmall2,
                   ),
-                );
-              },
-            ),
-            // Video indicator
-            if (isVideo)
-              const Positioned(
-                top: 8,
-                right: 8,
-                child: Icon(
-                  Icons.play_arrow,
-                  color: Colors.white,
-                  size: 20,
                 ),
-              ),
-            // Multiple images indicator
-            if (hasMultiple && !isVideo)
-              const Positioned(
-                top: 8,
-                right: 8,
-                child: Icon(
-                  Icons.copy,
-                  color: Colors.white,
-                  size: 16,
+              if (hasMultiple && !isVideo)
+                const Positioned(
+                  top: AppDimensions.spacingSmall2,
+                  right: AppDimensions.spacingSmall2,
+                  child: Icon(
+                    Icons.copy,
+                    color: AppColors.iconPrimary,
+                    size: AppDimensions.iconXSmall3,
+                  ),
                 ),
-              ),
-            // Pinned indicator
-            if (isPinned)
-              const Positioned(
-                top: 8,
-                left: 8,
-                child: Icon(
-                  Icons.push_pin,
-                  color: Colors.white,
-                  size: 16,
+              if (isPinned)
+                const Positioned(
+                  top: AppDimensions.spacingSmall2,
+                  left: AppDimensions.spacingSmall2,
+                  child: Icon(
+                    Icons.push_pin,
+                    color: AppColors.iconPrimary,
+                    size: AppDimensions.iconXSmall3,
+                  ),
                 ),
-              ),
             ],
           ),
         );

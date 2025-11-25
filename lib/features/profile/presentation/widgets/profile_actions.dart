@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/constants/app_text_styles.dart';
 
 class ProfileActions extends StatelessWidget {
   const ProfileActions({super.key});
@@ -6,20 +9,19 @@ class ProfileActions extends StatelessWidget {
   Widget _btn(String text, {bool isPrimary = false}) {
     return Expanded(
       child: Container(
-        height: 32,
+        height: AppDimensions.buttonHeightSmall,
         decoration: BoxDecoration(
-          color: isPrimary ? Colors.grey.shade800 : Colors.transparent,
-          border: Border.all(color: Colors.grey.shade700, width: 1),
-          borderRadius: BorderRadius.circular(8),
+          color: isPrimary ? AppColors.buttonPrimary : AppColors.buttonSecondary,
+          border: Border.all(
+            color: AppColors.border,
+            width: AppDimensions.borderNormal,
+          ),
+          borderRadius: BorderRadius.circular(AppDimensions.radiusSmall),
         ),
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppTextStyles.button,
           ),
         ),
       ),
@@ -28,26 +30,35 @@ class ProfileActions extends StatelessWidget {
 
   Widget _iconBtn(IconData icon) {
     return Container(
-      width: 32,
-      height: 32,
+      width: AppDimensions.buttonHeightSmall,
+      height: AppDimensions.buttonHeightSmall,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade700, width: 1),
-        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: AppColors.border,
+          width: AppDimensions.borderNormal,
+        ),
+        borderRadius: BorderRadius.circular(AppDimensions.radiusSmall),
       ),
-      child: Icon(icon, color: Colors.white, size: 18),
+      child: Icon(
+        icon,
+        color: AppColors.iconPrimary,
+        size: AppDimensions.iconSmall,
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppDimensions.spacingLarge,
+      ),
       child: Row(
         children: [
           _btn("Following", isPrimary: true),
-          const SizedBox(width: 6),
+          const SizedBox(width: AppDimensions.spacingSmall),
           _btn("Message"),
-          const SizedBox(width: 6),
+          const SizedBox(width: AppDimensions.spacingSmall),
           _iconBtn(Icons.person_add_outlined),
         ],
       ),

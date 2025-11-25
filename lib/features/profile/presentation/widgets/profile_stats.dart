@@ -4,6 +4,8 @@ import 'story_ring.dart';
 import '../../domain/entities/story.dart';
 import '../cubit/profile_cubit.dart';
 import '../cubit/profile_state.dart';
+import '../../../../core/constants/app_text_styles.dart';
+import '../../../../core/constants/app_dimensions.dart';
 
 class ProfileStats extends StatelessWidget {
   final int posts;
@@ -24,18 +26,11 @@ class ProfileStats extends StatelessWidget {
       children: [
         Text(
           count,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: AppTextStyles.statsCount,
         ),
         Text(
           label,
-          style: TextStyle(
-            color: Colors.grey.shade400,
-            fontSize: 12,
-          ),
+          style: AppTextStyles.statsLabel,
         ),
       ],
     );
@@ -44,7 +39,10 @@ class ProfileStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppDimensions.spacingLarge,
+        vertical: AppDimensions.spacingSmall,
+      ),
       child: Row(
         children: [
           BlocBuilder<ProfileCubit, ProfileState>(
@@ -54,12 +52,12 @@ class ProfileStats extends StatelessWidget {
                 profileImage: profileImage,
                 username: 'google',
                 stories: stories,
-                size: 90,
+                size: AppDimensions.profilePictureLarge,
                 hasStory: stories.isNotEmpty,
               );
             },
           ),
-          const SizedBox(width: 25),
+          const SizedBox(width: AppDimensions.spacingXLarge),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

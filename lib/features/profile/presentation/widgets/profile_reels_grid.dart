@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../pages/reel_detail_page.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/constants/app_text_styles.dart';
 
 class ProfileReelsGrid extends StatelessWidget {
   final List<String> reels;
@@ -19,10 +22,10 @@ class ProfileReelsGrid extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: reels.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisSpacing: 2,
-        crossAxisSpacing: 2,
-        childAspectRatio: 0.6, // Taller for reels
+        crossAxisCount: AppDimensions.gridColumns,
+        mainAxisSpacing: AppDimensions.gridSpacing,
+        crossAxisSpacing: AppDimensions.gridSpacing,
+        childAspectRatio: AppDimensions.reelAspectRatio,
       ),
       itemBuilder: (context, index) {
         return GestureDetector(
@@ -45,46 +48,40 @@ class ProfileReelsGrid extends StatelessWidget {
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Container(
-                    color: Colors.grey.shade900,
-                    child: Center(
+                    color: AppColors.errorBackground,
+                    child: const Center(
                       child: Icon(
                         Icons.video_library,
-                        color: Colors.grey.shade700,
-                        size: 40,
+                        color: AppColors.errorIcon,
+                        size: AppDimensions.iconXXLarge,
                       ),
                     ),
                   );
                 },
               ),
-              // Play icon overlay
               const Positioned(
-                bottom: 8,
-                left: 8,
+                bottom: AppDimensions.spacingSmall2,
+                left: AppDimensions.spacingSmall2,
                 child: Icon(
                   Icons.play_arrow,
-                  color: Colors.white,
-                  size: 24,
+                  color: AppColors.iconPrimary,
+                  size: AppDimensions.iconMedium,
                 ),
               ),
-              // View count
               Positioned(
-                bottom: 8,
-                right: 8,
+                bottom: AppDimensions.spacingSmall2,
+                right: AppDimensions.spacingSmall2,
                 child: Row(
                   children: [
                     const Icon(
                       Icons.play_arrow,
-                      color: Colors.white,
-                      size: 16,
+                      color: AppColors.iconPrimary,
+                      size: AppDimensions.iconXSmall3,
                     ),
-                    const SizedBox(width: 2),
+                    const SizedBox(width: AppDimensions.spacingXSmall),
                     Text(
                       '${(index + 1) * 123}K',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: AppTextStyles.countText,
                     ),
                   ],
                 ),

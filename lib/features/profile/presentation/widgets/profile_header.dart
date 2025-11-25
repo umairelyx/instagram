@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/constants/app_text_styles.dart';
 
 class ProfileHeader extends StatelessWidget {
   final String username;
@@ -13,35 +16,42 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppDimensions.spacingLarge,
+        vertical: AppDimensions.spacingMedium,
+      ),
       child: Row(
         children: [
-          const Icon(Icons.lock_outline, color: Colors.white, size: 20),
-          const SizedBox(width: 8),
-
+          const Icon(
+            Icons.lock_outline,
+            color: AppColors.iconPrimary,
+            size: AppDimensions.iconSmall2,
+          ),
+          const SizedBox(width: AppDimensions.spacingSmall2),
           Text(
             username,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppTextStyles.profileUsername,
           ),
-
           if (isVerified) ...[
-            const SizedBox(width: 6),
-            const Icon(Icons.verified, color: Color(0xFF0095F6), size: 20),
+            const SizedBox(width: AppDimensions.spacingSmall),
+            const Icon(
+              Icons.verified,
+              color: AppColors.blue,
+              size: AppDimensions.iconSmall2,
+            ),
           ],
-
           const Spacer(),
-
           const Icon(
             Icons.notifications_outlined,
-            color: Colors.white,
-            size: 26,
+            color: AppColors.iconPrimary,
+            size: AppDimensions.iconMedium2,
           ),
-          const SizedBox(width: 20),
-          const Icon(Icons.more_vert, color: Colors.white, size: 26),
+          const SizedBox(width: AppDimensions.spacingXLarge),
+          const Icon(
+            Icons.more_vert,
+            color: AppColors.iconPrimary,
+            size: AppDimensions.iconMedium2,
+          ),
         ],
       ),
     );

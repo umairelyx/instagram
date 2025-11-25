@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'story_ring.dart';
+import '../../domain/entities/story.dart';
+import '../cubit/profile_cubit.dart';
+import '../cubit/profile_state.dart';
 
 class ProfileStats extends StatelessWidget {
   final int posts;
@@ -43,14 +47,17 @@ class ProfileStats extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Row(
         children: [
-          StoryRing(
-            profileImage: profileImage,
-            username: 'google',
-            storyImages: const [
-              'assets/story/story_1.jpg',
-            ],
-            size: 90,
-            hasStory: true,
+          BlocBuilder<ProfileCubit, ProfileState>(
+            builder: (context, state) {
+              final stories = state is ProfileLoaded ? state.stories : <Story>[];
+              return StoryRing(
+                profileImage: profileImage,
+                username: 'google',
+                stories: stories,
+                size: 90,
+                hasStory: stories.isNotEmpty,
+              );
+            },
           ),
           const SizedBox(width: 25),
           Expanded(

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'core/constants/app_theme.dart';
+import 'core/di/injection_container.dart' as di;
 import 'features/profile/presentation/pages/profile_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(const MyApp());
 }
 

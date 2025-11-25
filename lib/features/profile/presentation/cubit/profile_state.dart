@@ -3,6 +3,7 @@ import '../../domain/entities/user_profile.dart';
 import '../../domain/entities/post.dart';
 import '../../domain/entities/reel.dart';
 import '../../domain/entities/tagged_post.dart';
+import '../../domain/entities/story.dart';
 
 abstract class ProfileState extends Equatable {
   const ProfileState();
@@ -20,16 +21,18 @@ class ProfileLoaded extends ProfileState {
   final List<Post> posts;
   final List<Reel> reels;
   final List<TaggedPost> tagged;
+  final List<Story> stories;
 
   const ProfileLoaded({
     required this.profile,
     required this.posts,
     required this.reels,
     required this.tagged,
+    required this.stories,
   });
 
   @override
-  List<Object?> get props => [profile, posts, reels, tagged];
+  List<Object?> get props => [profile, posts, reels, tagged, stories];
 }
 
 class ProfileError extends ProfileState {

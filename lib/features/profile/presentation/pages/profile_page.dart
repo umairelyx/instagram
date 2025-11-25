@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/usecases/get_user_posts.dart';
-import '../../domain/usecases/get_user_profile.dart';
-import '../../domain/usecases/get_user_reels.dart';
-import '../../domain/usecases/get_tagged_posts.dart';
 import '../../domain/entities/user_profile.dart';
 import '../../domain/entities/post.dart';
 import '../../domain/entities/reel.dart';
 import '../../domain/entities/tagged_post.dart';
 
-import '../../presentation/cubit/profile_cubit.dart';
-import '../../presentation/cubit/profile_state.dart';
+import '../cubit/profile_cubit.dart';
+import '../cubit/profile_state.dart';
 
 import '../widgets/profile_header.dart';
 import '../widgets/profile_stats.dart';
@@ -23,41 +19,15 @@ import '../widgets/profile_reels_grid.dart';
 import '../widgets/profile_tagged_grid.dart';
 import '../widgets/bottom_navigation.dart';
 
-import '../../../profile/data/datasources/profile_local_datasource.dart';
-import '../../../profile/data/repositories/profile_repository_impl.dart';
+import '../../../../core/di/injection_container.dart' as di;
 
-class ProfilePage extends StatefulWidget {
+class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
-
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  late ProfileCubit cubit;
-
-  @override
-  void initState() {
-    super.initState();
-
-    /// Dependency Injection (manual for now)
-    final dataSource = ProfileLocalDataSourceImpl();
-    final repository = ProfileRepositoryImpl(localDataSource: dataSource);
-
-    cubit = ProfileCubit(
-      getUserProfile: GetUserProfile(repository),
-      getUserPosts: GetUserPosts(repository),
-      getUserReels: GetUserReels(repository),
-      getTaggedPosts: GetTaggedPosts(repository),
-    );
-
-    cubit.loadProfile(); // load data at start
-  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => cubit,
+      create: (_) => di.sl<ProfileCubit>()..loadProfile(),
       child: Scaffold(
         backgroundColor: Colors.black,
         body: BlocBuilder<ProfileCubit, ProfileState>(

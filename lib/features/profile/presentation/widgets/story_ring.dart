@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../domain/entities/story.dart';
 import '../pages/story_viewer_page.dart';
 
 /// Reusable story ring widget that can be used anywhere
@@ -6,7 +7,7 @@ import '../pages/story_viewer_page.dart';
 class StoryRing extends StatelessWidget {
   final String profileImage;
   final String username;
-  final List<String> storyImages;
+  final List<Story> stories;
   final double size;
   final bool hasStory;
 
@@ -14,7 +15,7 @@ class StoryRing extends StatelessWidget {
     super.key,
     required this.profileImage,
     required this.username,
-    required this.storyImages,
+    required this.stories,
     this.size = 90,
     this.hasStory = true,
   });
@@ -50,7 +51,7 @@ class StoryRing extends StatelessWidget {
       ),
     );
 
-    if (!hasStory || storyImages.isEmpty) {
+    if (!hasStory || stories.isEmpty) {
       return ringWidget;
     }
 
@@ -60,7 +61,7 @@ class StoryRing extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => StoryViewerPage(
-              storyImages: storyImages,
+              stories: stories,
               username: username,
               profileImage: profileImage,
             ),

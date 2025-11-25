@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import '../../domain/entities/story.dart';
 
 class StoryViewerPage extends StatefulWidget {
-  final List<String> storyImages;
+  final List<Story> stories;
   final String username;
   final String profileImage;
 
   const StoryViewerPage({
     super.key,
-    required this.storyImages,
+    required this.stories,
     required this.username,
     required this.profileImage,
   });
@@ -40,7 +41,7 @@ class _StoryViewerPageState extends State<StoryViewerPage>
   }
 
   void _nextStory() {
-    if (_currentIndex < widget.storyImages.length - 1) {
+    if (_currentIndex < widget.stories.length - 1) {
       setState(() {
         _currentIndex++;
       });
@@ -100,7 +101,7 @@ class _StoryViewerPageState extends State<StoryViewerPage>
             // Story Image
             Center(
               child: Image.asset(
-                widget.storyImages[_currentIndex],
+                widget.stories[_currentIndex].imageUrl,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: double.infinity,
@@ -138,7 +139,7 @@ class _StoryViewerPageState extends State<StoryViewerPage>
                     ),
                     child: Row(
                       children: List.generate(
-                        widget.storyImages.length,
+                        widget.stories.length,
                         (index) => Expanded(
                           child: Container(
                             height: 2,
@@ -277,7 +278,19 @@ class _StoryViewerPageState extends State<StoryViewerPage>
   }
 
   String _getTimeAgo() {
-    // Simulate time ago (in real app, calculate from story timestamp)
-    return '2h';
+    if (widget.stories.isEmpty) return '';
+    
+    final story = widget.stories[_currentIndex];
+    final difference = DateTime.now().difference(story.timestamp);
+    
+    if (difference.inDays > 0) {
+      return '${difference.inDays}d';
+    } else if (difference.inHours > 0) {
+      return '${difference.inHours}h';
+    } else if (difference.inMinutes > 0) {
+      return '${difference.inMinutes}m';
+    } else {
+      return 'now';
+    }
   }
 }

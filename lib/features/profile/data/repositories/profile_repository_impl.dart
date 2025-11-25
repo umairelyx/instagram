@@ -2,6 +2,7 @@ import '../../domain/entities/user_profile.dart';
 import '../../domain/entities/post.dart';
 import '../../domain/entities/reel.dart';
 import '../../domain/entities/tagged_post.dart';
+import '../../domain/entities/story.dart';
 import '../../domain/repositories/profile_repository.dart';
 
 import '../datasources/profile_local_datasource.dart';
@@ -9,6 +10,7 @@ import '../models/user_profile_model.dart';
 import '../models/post_model.dart';
 import '../models/reel_model.dart';
 import '../models/tagged_post_model.dart';
+import '../models/story_model.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileLocalDataSource localDataSource;
@@ -42,6 +44,12 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<List<TaggedPost>> getTaggedPosts() async {
     final List<TaggedPostModel> models = await localDataSource.getTaggedPosts();
+    return models;
+  }
+
+  @override
+  Future<List<Story>> getUserStories() async {
+    final List<StoryModel> models = await localDataSource.getUserStories();
     return models;
   }
 }

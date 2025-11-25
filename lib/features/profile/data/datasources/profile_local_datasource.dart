@@ -2,12 +2,14 @@ import '../models/user_profile_model.dart';
 import '../models/post_model.dart';
 import '../models/reel_model.dart';
 import '../models/tagged_post_model.dart';
+import '../models/story_model.dart';
 
 abstract class ProfileLocalDataSource {
   Future<UserProfileModel> getUserProfile();
   Future<List<PostModel>> getUserPosts();
   Future<List<ReelModel>> getUserReels();
   Future<List<TaggedPostModel>> getTaggedPosts();
+  Future<List<StoryModel>> getUserStories();
 }
 
 class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
@@ -89,5 +91,19 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
     ];
 
     return rawTagged.map((map) => TaggedPostModel.fromMap(map)).toList();
+  }
+
+  @override
+  Future<List<StoryModel>> getUserStories() async {
+    // Mock list of stories
+    final List<Map<String, dynamic>> rawStories = [
+      {
+        "id": "1",
+        "imageUrl": "assets/story/story_1.jpg",
+        "timestamp": DateTime.now().subtract(const Duration(hours: 2)).toIso8601String(),
+      },
+    ];
+
+    return rawStories.map((map) => StoryModel.fromJson(map)).toList();
   }
 }

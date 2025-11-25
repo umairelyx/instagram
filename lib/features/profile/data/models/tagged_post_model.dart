@@ -1,4 +1,4 @@
-import '../../domain/entities/tagged_post.dart';
+import '../../domain/entities/entities.dart';
 
 class TaggedPostModel extends TaggedPost {
   const TaggedPostModel({

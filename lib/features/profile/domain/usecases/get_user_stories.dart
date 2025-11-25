@@ -1,5 +1,5 @@
-import '../entities/story.dart';
-import '../repositories/profile_repository.dart';
+import '../entities/entities.dart';
+import '../repositories/repositories.dart';
 
 class GetUserStories {
   final ProfileRepository repository;

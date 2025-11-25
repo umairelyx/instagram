@@ -1,25 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../domain/entities/user_profile.dart';
-import '../../domain/entities/post.dart';
-import '../../domain/entities/reel.dart';
-import '../../domain/entities/tagged_post.dart';
-
-import '../cubit/profile_cubit.dart';
-import '../cubit/profile_state.dart';
-
-import '../widgets/profile_header.dart';
-import '../widgets/profile_stats.dart';
-import '../widgets/profile_bio.dart';
-import '../widgets/profile_actions.dart';
-import '../widgets/profile_tabs.dart';
-import '../widgets/profile_posts_grid.dart';
-import '../widgets/profile_reels_grid.dart';
-import '../widgets/profile_tagged_grid.dart';
-import '../widgets/bottom_navigation.dart';
-
 import '../../../../core/di/injection_container.dart' as di;
+import '../../domain/entities/entities.dart';
+import '../cubit/cubit.dart';
+import '../widgets/widgets.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

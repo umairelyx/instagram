@@ -1,4 +1,4 @@
-import '../../domain/entities/post.dart';
+import '../../domain/entities/entities.dart';
 
 class PostModel extends Post {
   const PostModel({

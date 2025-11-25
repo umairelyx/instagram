@@ -1,5 +1,5 @@
-import '../entities/post.dart';
-import '../repositories/profile_repository.dart';
+import '../entities/entities.dart';
+import '../repositories/repositories.dart';
 
 class GetUserPosts {
   final ProfileRepository repository;

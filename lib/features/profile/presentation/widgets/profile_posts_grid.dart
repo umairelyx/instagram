@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../core/constants/constants.dart';
 import '../pages/post_detail_page.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_dimensions.dart';
 
 class ProfilePostsGrid extends StatelessWidget {
   final List<String> posts;

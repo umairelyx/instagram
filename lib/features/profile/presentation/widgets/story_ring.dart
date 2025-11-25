@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../domain/entities/story.dart';
+import '../../../../core/constants/constants.dart';
+import '../../domain/entities/entities.dart';
 import '../pages/story_viewer_page.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_dimensions.dart';
-import '../../../../core/constants/app_gradients.dart';
 
 /// Reusable story ring widget that can be used anywhere
 /// Shows gradient ring if user has active stories

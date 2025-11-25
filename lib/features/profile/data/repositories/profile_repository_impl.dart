@@ -1,16 +1,6 @@
-import '../../domain/entities/user_profile.dart';
-import '../../domain/entities/post.dart';
-import '../../domain/entities/reel.dart';
-import '../../domain/entities/tagged_post.dart';
-import '../../domain/entities/story.dart';
-import '../../domain/repositories/profile_repository.dart';
-
-import '../datasources/profile_local_datasource.dart';
-import '../models/user_profile_model.dart';
-import '../models/post_model.dart';
-import '../models/reel_model.dart';
-import '../models/tagged_post_model.dart';
-import '../models/story_model.dart';
+import '../../domain/domain.dart';
+import '../datasources/datasources.dart';
+import '../models/models.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileLocalDataSource localDataSource;

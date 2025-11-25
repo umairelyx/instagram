@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/constants/constants.dart';
+import '../../domain/entities/entities.dart';
+import '../cubit/cubit.dart';
 import 'story_ring.dart';
-import '../../domain/entities/story.dart';
-import '../cubit/profile_cubit.dart';
-import '../cubit/profile_state.dart';
-import '../../../../core/constants/app_text_styles.dart';
-import '../../../../core/constants/app_dimensions.dart';
 
 class ProfileStats extends StatelessWidget {
   final int posts;

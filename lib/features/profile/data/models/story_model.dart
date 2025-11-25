@@ -1,4 +1,4 @@
-import '../../domain/entities/story.dart';
+import '../../domain/entities/entities.dart';
 
 class StoryModel extends Story {
   const StoryModel({

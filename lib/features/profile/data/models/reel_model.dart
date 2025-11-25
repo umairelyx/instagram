@@ -1,4 +1,4 @@
-import '../../domain/entities/reel.dart';
+import '../../domain/entities/entities.dart';
 
 class ReelModel extends Reel {
   const ReelModel({

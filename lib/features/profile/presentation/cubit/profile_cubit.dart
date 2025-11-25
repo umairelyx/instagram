@@ -1,10 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:instagram/features/profile/domain/usecases/get_user_posts.dart';
-import 'package:instagram/features/profile/domain/usecases/get_user_profile.dart';
-import 'package:instagram/features/profile/domain/usecases/get_user_reels.dart';
-import 'package:instagram/features/profile/domain/usecases/get_tagged_posts.dart';
-import 'package:instagram/features/profile/domain/usecases/get_user_stories.dart';
-
+import '../../domain/usecases/usecases.dart';
 import 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {

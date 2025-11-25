@@ -1,5 +1,5 @@
-import '../entities/reel.dart';
-import '../repositories/profile_repository.dart';
+import '../entities/entities.dart';
+import '../repositories/repositories.dart';
 
 class GetUserReels {
   final ProfileRepository repository;

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../core/constants/constants.dart';
 import '../pages/reel_detail_page.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_dimensions.dart';
-import '../../../../core/constants/app_text_styles.dart';
 
 class ProfileReelsGrid extends StatelessWidget {
   final List<String> reels;

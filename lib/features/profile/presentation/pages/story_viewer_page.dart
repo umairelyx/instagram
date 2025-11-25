@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import '../../domain/entities/story.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_dimensions.dart';
-import '../../../../core/constants/app_text_styles.dart';
-import '../../../../core/constants/app_durations.dart';
+import '../../../../core/constants/constants.dart';
+import '../../domain/entities/entities.dart';
 
 class StoryViewerPage extends StatefulWidget {
   final List<Story> stories;

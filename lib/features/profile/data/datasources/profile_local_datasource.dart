@@ -1,8 +1,4 @@
-import '../models/user_profile_model.dart';
-import '../models/post_model.dart';
-import '../models/reel_model.dart';
-import '../models/tagged_post_model.dart';
-import '../models/story_model.dart';
+import '../models/models.dart';
 
 abstract class ProfileLocalDataSource {
   Future<UserProfileModel> getUserProfile();
